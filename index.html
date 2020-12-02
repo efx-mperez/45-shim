@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>45 shim</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="links">
+        Sections:<br>
+        <a href="index.html#projects">Projects</a><br>
+        <a href="index.html#firewall_rules">Firewall Rules</a><br>
+        <a href="index.html#filestore_instances">Filestore Instances</a><br>
+    </div>
+    <!-- Projects -->
+    <section id="projects"></section>
+    <h1>Projects</h1>
+    <div class="inputs project_inputs">
+        <h3>Project</h3>
+        Mnemonic-team-project-env code: <input class="project_code" name="project_code"> <br>
+        or<br>
+		Alliance: <input class="alliance" name="alliance" list="datalist_alliances" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_alliances"></datalist>
+		Environment: <input class="environment" name="environment" list="datalist_environments" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_environments"></datalist>
+        Team: <input class="team" name="team" list="datalist_teams" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_teams"></datalist>
+        Project: <input class="project" name="project" list="datalist_projects" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_projects"></datalist>
+        SDLC: <input class="sdlc" name="sdlc" list="datalist_sdlcs" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_sdlcs"></datalist>
+        <h3>APIs</h3>
+        Add (only non-default apis that are not currenlty on the project will be taken into account):
+        <textarea class="apis_add" name="apis_add" rows="4"></textarea><br>
+        Substract (only non-default apis that are currently on the project will be taken into account):
+        <textarea class="apis_delete" name="apis_add" rows="4"></textarea><br>
+        <div class="dangerous_field">
+            <span class="title">Authoritative:</span> <a class="toggle_link" href="">Show</a>
+            <div class="content">
+                <textarea class="apis" name="apis" rows="4"></textarea><br>
+                Examples:
+                <button class="add_non_default_apis">Replace by current project's non-default APIs</button>
+            </div>
+        </div>
+        <h3>Subnets</h3>
+        <textarea class="subnets" name="subnets" rows="4"></textarea><br>
+        Examples:
+        <div class="modifySubnetButtons">
+            <div class="removeCurrentSubnetButtons"></div>
+        </div>
+        <h3>Flags</h3>
+        <textarea class="flags" name="flags" rows="1"></textarea><br>
+        Examples:
+        <button class="modifyFlags">Composer</button>
+    </div>
+    <h3>Result</h3>
+    <div class="project_outputs">
+    	<pre><code class="project_result">{}</code></pre>
+        <button class="copy" data-copy="project_result">Copy Result to Clipboard</button><br>
+        <h3>Quicklinks</h3>
+        Build the 45 job: <a href="https://10.148.64.5/job/45-mott-api-request/build">https://10.148.64.5/job/45-mott-api-request/build</a><br>
+        Group creation : <a href="https://identity.equifax.com/iiq/workitem/commonWorkItem.jsf#/commonWorkItem/8a99b07872b726960172e275d26c6a8f">https://identity.equifax.com/iiq/workitem/commonWorkItem.jsf#/commonWorkItem/8a99b07872b726960172e275d26c6a8f</a><br>
+        xVPC: <span class="project_xvpc"></span><br>
+        Currently selected project as seen on the SOT: <span class="current_project"></span>
+    </div>
+    <hr>
+
+
+    <!-- Firewalls -->
+    <section id="firewall_rules"></section>
+    <h1>Firewall Rules</h1>
+    Are these target IPs in the SOT?<br>
+    <textarea class="ip" rows="1"></textarea><br>
+    <code class="is_ip_in_gcp">Introduce one or more IP addresses</code>
+    <div class="inputs firewall_inputs">
+        <h3>Jira</h3>
+        <input type="text" class="jira" name="jira" value="CTFD-">
+        <h3>Environment</h3>
+        Alliance: <input class="alliance" name="alliance" list="datalist_fw_alliances" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_fw_alliances"></datalist>
+        Environment: <input class="environment" name="environment" list="datalist_fw_environments" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_fw_environments"></datalist>
+        DSZ: <input class="dsz" name="dsz" list="datalist_fw_dszs" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_fw_dszs"></datalist>
+        <h3>Name</h3>    
+        <textarea class="name" name="name" rows="1"></textarea>
+        <h3>Sources</h3>
+        <textarea class="sources" name="sources" rows="1"></textarea>
+        <h3>Source Tags</h3>
+        <textarea class="source_tags" name="source_tags" rows="1"></textarea>
+        <h3>Ports</h3>
+        <textarea class="ports" name="ports" rows="1"></textarea><br>
+        <span>Examples: udp123 udp100-200 123 100-200</span>  
+        <h3>Description</h3> 
+        <textarea class="description" name="description" rows="1"></textarea>
+        <h3>Target tags</h3>    
+        <textarea class="tags" name="tags" rows="1"></textarea>
+        <h3>Priority</h3>
+        <input type="text" class="priority" name="priority" value="1000">
+    </div>
+    <h3>Result</h3>
+    <div class="firewall_outputs">
+        <span class="covered_by_default_rule"></span>
+        <pre><code>cd <span class="fw_alliance"></span>_alliance_<span class="fw_environment"></span>
+git checkout master
+git pull
+git checkout -b <span class="fw_jira">introduce_your_Jira_number</span></code></pre>
+        <pre><code class="firewall_result"># <span class="fw_jira">introduce_your_Jira_number</span>
+resource "google_compute_firewall" <span class="fw_name">""</span> {
+  name          = <span class="fw_name">""</span>
+  network       = "${data.terraform_remote_state.alliances.<span class="fw_mnemonic"></span>-alliance-env<span class="fw_dsz"></span>network-name}"
+  project       = "${data.terraform_remote_state.alliances.<span class="fw_mnemonic"></span>-alliance-env-network-project-id}"
+  description   = <span class="fw_description">""</span>
+
+  source_ranges = <span class="fw_sources">[
+  ]</span>
+  <span class="fw_ports"></span>
+  <span class="fw_source_tags"></span>
+  target_tags = <span class="fw_tags">[]</span>
+  priority    = <span class="fw_priority">"1000"</span>
+}</code></pre>
+        <button class="copy" data-copy="firewall_result">Copy Result to Clipboard</button><br>
+        <pre><code>git add custom/*
+git commit -m <span class="fw_jira">introduce_your_Jira_number</span>
+git push --set-upstream origin <span class="fw_jira">introduce_your_Jira_number</span></code></pre>
+        <h3>Quicklinks</h3>
+        Create PR: <span class="fw_PR_link">Introduce your Jira number first</span><br>
+        Build the environment's custom job: <span class="fw_custom_job_link">Select an alliance and environment first</span><br>
+        Default fw rule: <span class="fw_default_fw_link">Select an alliance and environment first</span><br>
+        Environment's repo: <span class="fw_repo_link">Select an alliance and environment first</span><br>
+        New FW rule (available after TF apply): <span class="fw_FW_link">Introduce your FW name first</span>
+    </div>
+    <hr>
+
+    <!-- Filestore -->
+    <section id="filestore_instances"></section>
+    <h1>Filestore Instances</h1>
+    <div class="inputs filestore_inputs">
+        <h3>Jira</h3>
+        <input type="text" class="jira" name="jira" value="CTFD-"> 
+        <h3>Network</h3>
+        Alliance: <input class="alliance" name="alliance" list="datalist_fs_alliances" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_fs_alliances"></datalist>
+        Environment: <input class="environment" name="environment" list="datalist_fs_environments" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_fs_environments"></datalist>
+        Team: <input class="team" name="team" list="datalist_fs_teams" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_fs_teams"></datalist>
+        Project: <input class="project" name="project" list="datalist_fs_projects" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_fs_projects"></datalist>
+        <br>
+        DSZ: <input class="dsz" name="dsz" list="datalist_fs_dszs" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_fs_dszs"></datalist>
+        CIDR: <input type="text" class="cidr" name="cidr" list="datalist_fs_cidrs" onmouseover="focus();old = value;" onmousedown = "value = '';" onmouseup="value = old;"><datalist id="datalist_fs_cidrs"></datalist>
+        <h3>Names</h3>
+        Resource Name: <input type="text" class="name" name="name">
+        Fileshare Name:<input type="text" class="fileshare_name" name="fileshare_name">
+        <h3>Capacity (GB)</h3>
+        <input type="text" class="capacity" name="capacity" value="1024">
+        
+        <h3>Description</h3> 
+        <textarea class="description" name="description"></textarea>
+    </div>
+    <h3>Result</h3>
+    <div class="filestore_outputs">
+        <pre><code>cd <span class="fs_alliance"></span>_alliance_<span class="fs_environment"></span>
+git checkout master
+git pull
+git checkout -b <span class="fs_jira">introduce_your_Jira_number</span></code></pre>
+        <pre><code class="filestore_result"># <span class="fs_jira">introduce_your_Jira_number</span>
+resource "google_filestore_instance" <span class="fs_name">""</span> {
+  name                = <span class="fs_name">""</span>
+  zone                = <span class="fs_zone">""</span>
+  tier                = "STANDARD"
+  description         = <span class="fs_description">""</span>
+
+  project = "${data.terraform_remote_state.alliances.<span class="fs_mnemonic"></span>-alliance-env-network-project-id}"
+  file_shares {
+    capacity_gb       = <span class="fs_capacity">1024</span>
+    name              = <span class="fs_fileshare_name">""</span>
+  }
+  networks {
+    network           = "${data.terraform_remote_state.alliances.<span class="fs_mnemonic"></span>-alliance-env<span class="fs_dsz"></span>network-name}"
+    modes             = ["MODE_IPV4"]
+    reserved_ip_range = <span class="fs_cidr">""</span>
+  }
+}</code></pre>
+        <button class="copy" data-copy="filestore_result">Copy Result to Clipboard</button><br>
+        <pre><code>git add custom/*
+git commit -m <span class="fs_jira">introduce_your_Jira_number</span>
+git push --set-upstream origin <span class="fs_jira">introduce_your_Jira_number</span></code></pre>
+        <h3>Quicklinks</h3>
+        Create PR: <span class="fs_PR_link">Introduce your Jira number first</span><br>
+        Build the environment's custom job: <span class="fs_custom_job_link">Select an alliance and environment first</span><br>
+        Environment's repo: <span class="fs_repo_link">Select an alliance and environment first</span><br>
+        Currently selected project as seen on the SOT: <span class="current_project_fs"></span>
+    </div>
+
+    <br><br><hr><hr>
+    <h3>Current SOT commit</h3>
+    <code class="commit"></code><br>
+    <button class="git_pull">Pull again!</button><br>
+    <br>
+    Quicklink to commits: <a href="https://bitbucket.equifax.com/projects/EFXGCP/repos/metadata-sot/commits">https://bitbucket.equifax.com/projects/EFXGCP/repos/metadata-sot/commits</a>
+    <br><br>
+
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/project.js"></script>
+    <script type="text/javascript" src="js/fw.js"></script>
+    <script type="text/javascript" src="js/fs.js"></script>
+</body>
+</html>
